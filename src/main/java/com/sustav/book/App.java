@@ -4,10 +4,13 @@ import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.WeldContainer;
 
 import com.sustav.book.entity.Book;
+import com.sustav.book.intercepter.Loggable;
 import com.sustav.book.intercepter.LoggingInterceptor;
 import com.sustav.book.log.LoggingProducer;
 import com.sustav.book.number_generator.IsbnGenerator;
 import com.sustav.book.number_generator.NumberGenerator;
+import com.sustav.book.qualifiers.EightDigits;
+import com.sustav.book.qualifiers.ThirteenDigits;
 import com.sustav.book.service.BookService;
 
 /*
@@ -15,7 +18,11 @@ import com.sustav.book.service.BookService;
  */
 public class App {
     public static void main(String[] args) {
-        Weld weld = new Weld().packages(BookService.class, LoggingInterceptor.class, LoggingProducer.class, IsbnGenerator.class, NumberGenerator.class);
+        Weld weld = new Weld().packages(BookService.class,
+                LoggingInterceptor.class,
+                LoggingProducer.class,
+                IsbnGenerator.class,
+                NumberGenerator.class, Loggable.class, EightDigits.class, ThirteenDigits.class);
         WeldContainer container = weld.initialize();
         BookService bookService = container.select(BookService.class).get();
         Book book = bookService.createBook("H2G2", 12.5f, "Book");
