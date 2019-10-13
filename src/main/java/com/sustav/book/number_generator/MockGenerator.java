@@ -1,13 +1,12 @@
 package com.sustav.book.number_generator;
 
-import java.util.Random;
-import java.util.logging.Logger;
+import com.sustav.book.intercepter.Loggable;
+import com.sustav.book.qualifiers.ThirteenDigits;
 
 import javax.enterprise.inject.Alternative;
 import javax.inject.Inject;
-
-import com.sustav.book.intercepter.Loggable;
-import com.sustav.book.qualifiers.ThirteenDigits;
+import java.util.Random;
+import java.util.logging.Logger;
 
 @ThirteenDigits
 @Alternative

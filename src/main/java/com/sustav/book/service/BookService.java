@@ -1,11 +1,11 @@
 package com.sustav.book.service;
 
-import javax.inject.Inject;
-
 import com.sustav.book.entity.Book;
 import com.sustav.book.intercepter.Loggable;
 import com.sustav.book.number_generator.NumberGenerator;
 import com.sustav.book.qualifiers.ThirteenDigits;
+
+import javax.inject.Inject;
 
 @Loggable
 public class BookService {

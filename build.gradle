@@ -11,8 +11,9 @@ plugins {
     id 'java'
     // Apply the application plugin to add support for building an application
     id 'application'
-    id 'war'
 }
+
+mainClassName = 'com.sustav.book.App'
 
 dependencies {
     // This dependency is found on compile classpath of this component and consumers.
@@ -22,14 +23,10 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     // https://mvnrepository.com/artifact/javax/javaee-api
-    providedCompile group: 'javax', name: 'javaee-api', version: '8.0.1'
+    compile group: 'javax', name: 'javaee-api', version: '8.0.1'
 
     // https://mvnrepository.com/artifact/org.jboss.weld.se/weld-se-core
     compile group: 'org.jboss.weld.se', name: 'weld-se-core', version: '3.1.2.Final'
-
-    // https://mvnrepository.com/artifact/org.jboss.weld/weld-api
-    compile group: 'org.jboss.weld', name: 'weld-api', version: '3.1.SP1'
-
 
 }
 
@@ -38,6 +35,15 @@ repositories {
     // Use jcenter for resolving your dependencies.
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
+}
+
+jar {
+    manifest {
+        attributes(
+                "Class-Path": configurations.compile.collect{it.toURI().toString()}.join(' '),
+//                "Class-Path": configurations.compile.collect { 'lib/' + it.getName() }.join(' '),
+                'Main-Class': 'com.sustav.book.App')
+    }
 }
 
 

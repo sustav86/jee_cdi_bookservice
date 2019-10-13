@@ -1,11 +1,10 @@
 package com.sustav.book.intercepter;
 
-import java.util.logging.Logger;
-
 import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
+import java.util.logging.Logger;
 
 @Interceptor
 @Loggable
@@ -15,7 +14,7 @@ public class LoggingInterceptor {
 
     @AroundInvoke
     public Object logMethod(InvocationContext ic) throws Exception {
-        logger.entering("START LOGGING", "logMethod");
+        logger.info("START LOGGING");
         logger.entering(ic.getTarget().getClass().getName(), ic.getMethod().getName());
         try {
             return ic.proceed();
